@@ -13,14 +13,14 @@ const timeout = function (s) {
 // fetch data from an API and return the JSON
 export const getJSON = async function (url) {
   try {
-    // const res = await Promise.race([(fetch(url), timeout(TIMEOUT_SECS))]);
-    const res = await fetch(url);
+    const res = await Promise.race([fetch(url), timeout(TIMEOUT_SECS)]);
 
     const data = await res.json();
 
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
     return data;
   } catch (err) {
+    console.log(err);
     throw err; // rejecting the promise, handling in model
   }
 };
