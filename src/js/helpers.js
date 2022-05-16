@@ -13,8 +13,8 @@ const timeout = function (s) {
 // fetch data from an API and return the JSON
 export const getJSON = async function (url) {
   try {
-    const res = await Promise.race([(fetch(url), timeout(TIMEOUT_SECS))]);
-    // const res = await fetch(url);
+    // const res = await Promise.race([(fetch(url), timeout(TIMEOUT_SECS))]);
+    const res = await fetch(url);
 
     const data = await res.json();
 
